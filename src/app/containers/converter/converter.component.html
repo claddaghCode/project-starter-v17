@@ -1,0 +1,11 @@
+<div class="converter-container">
+  <app-exchange-form (exchangeTransaction)="onExchange($event)"></app-exchange-form>
+
+  <div *ngIf="result !== null" class="result">
+    Converted amount: {{ result }}
+  </div>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+</div>

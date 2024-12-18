@@ -3,10 +3,7 @@ import { Component, VERSION } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <h1>Hello {{name}}!</h1>
-    <p>
-      app works!
-    </p>
+    <app-converter></app-converter>
   `,
   styles: ``,
 })
