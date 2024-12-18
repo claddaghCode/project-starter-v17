@@ -3,3 +3,4 @@ export interface ExchangeTransaction {
     fromCurrency: string;
     toCurrency: string;
 }
+
