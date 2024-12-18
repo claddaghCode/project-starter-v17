@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidationErrors, ValidatorFn,
+  Validators
+} from '@angular/forms';
 import { ExchangeTransaction } from 'src/app/models/exchange-transaction.model';
 
 
@@ -23,8 +31,20 @@ export class ExchangeFormComponent {
       amount: [null, [Validators.required, Validators.min(0.01)]],
       fromCurrency: [null, Validators.required],
       toCurrency: [null, Validators.required],
-    });
+    }, { validators: this.currencyMismatchValidator });
   }
+
+  get isCurrencyMismatch(): boolean {
+    return !!this.exchangeForm.errors?.['currencyMismatch'];
+  }
+
+  // Custom validator
+  currencyMismatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const fromCurrency = control.get('fromCurrency');
+    const toCurrency = control.get('toCurrency');
+
+    return fromCurrency && toCurrency && fromCurrency.value === toCurrency.value ? { 'currencyMismatch': true } : null;
+  };
 
   onSubmit() {
     if (this.exchangeForm.valid) {

@@ -23,7 +23,9 @@
           <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
         </select>
       </div>
-  
+        <div *ngIf="isCurrencyMismatch">
+            From Currency and To Currency cannot be the same.
+        </div>
       <button type="submit" [disabled]="!exchangeForm.valid">Convert</button>
     </form>
   </div>
