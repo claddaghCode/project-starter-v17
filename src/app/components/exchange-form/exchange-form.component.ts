@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ExchangeTransaction } from 'src/app/models/exchange-transaction.model';
@@ -7,7 +8,7 @@ import { ExchangeTransaction } from 'src/app/models/exchange-transaction.model';
 @Component({
   selector: 'app-exchange-form',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './exchange-form.component.html',
   styleUrls: ['./exchange-form.component.css'],
 })
